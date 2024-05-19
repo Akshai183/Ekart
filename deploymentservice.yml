@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment # Kubernetes resource kind we are creating
+kind: Deployment
 metadata:
   name: ekart-deployment
 spec:
   selector:
     matchLabels:
       app: ekart
-  replicas: 2 # Number of replicas that will be created for this deployment
+  replicas: 2
   template:
     metadata:
       labels:
@@ -14,12 +14,11 @@ spec:
     spec:
       containers:
         - name: ekart
-          image: akshai183/ekart:latest # Image that will be used to containers in the cluster
+          image: akshai183/ekart:${IMAGE_TAG} # Update the image tag to use a placeholder
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8070 # The port that the container is running on in the cluster
-
-
+            - containerPort: 8070
+            
 ---
 
 apiVersion: v1 # Kubernetes API version
